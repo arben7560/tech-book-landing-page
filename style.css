@@ -1,1 +1,39 @@
-style.css
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+/* Background pleine largeur*/
+
+header,
+section,
+footer {
+    width: 100%;
+}
+
+
+/* Centrer le contenu selon les valeurs donné par figma*/
+
+.container {
+    /* un minimum de 1180px car la largeur défini sur figma est plus ou moins celle-ci pour tout les autres conteneurs*/
+    /* Garder une marge sur les côtés de 10% sur tablettes et mobiles*/
+    width: min(1180px, 90%);
+    margin: 0 auto;
+}
+
+header {
+    padding: 36px 0;
+    background-color: red;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
