@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
     <link rel="stylesheet" href="style.css">
-
     <title>Frontend Mentor | Tech book club</title>
 </head>
 
@@ -19,14 +21,17 @@
     </header>
     <main>
         <section class="hero">
+            <!-- Width pleine largeur englobant le contenu-->
             <div class="container">
+                <!-- Création du GRID parent-->
                 <div class="hero-layout">
+                    <!-- Items dans la GRID-->
                     <div class="hero-content stack">
                         <h1>Join the ultimate tech book club</h1>
                         <p>Turn your reading into learning time with fellow tech enthusiasts. Get curated recommendations, join vibrant discussions, and level up your skills one chapter at a time.
                         </p>
                         <div class="hero-aside stack">
-                            <div class="review">REVIEW MEMBERSHIP OPTIONS <img src="assets/images/icon-arrow-down.svg" alt=""> </div>
+                            <div class="button">REVIEW MEMBERSHIP OPTIONS <img src="assets/images/icon-arrow-down.svg" alt=""> </div>
                             <div class="legend"><img src="assets/images/image-avatars.webp" alt="">
                                 <div class="stars">
                                     <img src="assets/images/stars.png" alt="">
@@ -39,10 +44,29 @@
                     </div>
                 </div>
             </div>
-            <div class="container layout">
-                <div class="content1"></div>
-                <div class="content2"></div>
+        </section>
+        <section class="book-infos">
+            <div class="container">
+                <!-- Width pleine largeur englobant le contenu-->
+                <div class="book-layout">
+                    <!-- Création du GRID parent-->
+                    <div class="book-content stack">
+                        <!-- Items dans la GRID-->
+                        <img src="assets/images/image-read-together-desktop.webp" alt="">
+                    </div>
+                    <div class="book-text">
+                        <h3>Read together, grow together</h3>
+                        <p>
+                            <img src="assets/images/icon-check.svg" alt=""> Monthly curated tech reads selected by industry experts
+                        </p>
+                        <p><img src="assets/images/icon-check.svg" alt=""> Virtual and in-person meetups for deep-dive discussions
+                        </p>
+                        <p><img src="assets/images/icon-check.svg" alt=""> Early access to new tech book releases</p>
+                        <p><img src="assets/images/icon-check.svg" alt=""> Author Q&A sessions with tech thought leaders
+                        </p>
 
+                    </div>
+                </div>
             </div>
         </section>
     </main>
