@@ -3,6 +3,33 @@
     margin: 0;
 }
 
+@font-face {
+    font-family: "Martian Mono";
+    src: url("assets/fonts/martian-mono/static/MartianMono-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Martian Mono";
+    src: url("assets/fonts/martian-mono/static/MartianMono-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Martian Mono";
+    src: url("assets/fonts/martian-mono/static/MartianMono-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+
+/* Inter */
+
+@font-face {
+    font-family: "Inter";
+    src: url("assets/fonts/inter/static/Inter_18pt-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
 
 /*Unité rem pour les espaces entre les items (gap, padding...), plus pratique pour le responsive  */
 
@@ -21,9 +48,35 @@ footer {
     width: 100%;
 }
 
+section {
+    padding: 4rem 0;
+}
+
 h1 {
-    font-size: 5.5rem;
-    line-height: 4.2rem;
+    font-family: "Martian Mono";
+    font-weight: 700;
+    font-size: 3.875rem;
+    line-height: 1.2;
+    letter-spacing: -2px;
+    background: linear-gradient(to left, #062630FE 0%, #FEA36F 100%);
+    /* Coupe le dégradé pour qu’il remplisse uniquement les lettres*/
+    -webkit-background-clip: text;
+    /*Rend le texte transparent pour laisser voir le dégradé*/
+    -webkit-text-fill-color: transparent;
+    /* Standard */
+    background-clip: text;
+}
+
+h3 {
+    font-family: "Martian Mono";
+    font-weight: 600;
+    /* SemiBold */
+    font-size: 50px;
+    line-height: 1.3;
+    /* 130% */
+    letter-spacing: -2px;
+    color: #062630;
+    max-width: 530px;
 }
 
 
@@ -41,15 +94,20 @@ h1 {
 
 header {
     padding: 2.25rem 0;
-    background-color: red;
 }
 
 nav {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    background-color: blue;
-    ;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+nav span {
+    color: #062630;
 }
 
 
@@ -59,7 +117,17 @@ nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 9.375rem;
+    gap: 6.25rem;
+}
+
+
+/* BOOK LAYOUT */
+
+.book-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 8rem;
 }
 
 
@@ -86,12 +154,35 @@ nav {
     gap: 0.625rem;
 }
 
-.review {
+.button {
     display: flex;
     justify-content: space-around;
     padding: 1.25rem;
-    border: 2px solid black;
+    border: 2px solid #062630;
     border-radius: 5px;
+    max-width: 380px;
+}
+
+
+/* ---------- */
+
+.book-text {
+    display: flex;
+    flex-direction: column;
+    width: 530px;
+    gap: 2rem;
+}
+
+.book-text p {
+    font-family: "Inter";
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    color: #385159;
+    /* Pour aligner horizontalement l'image et le texte*/
+    display: flex;
+    align-items: center;
 }
 
 
@@ -111,6 +202,12 @@ nav {
     height: 40px;
 }
 
+.book-content>img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
 .layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -123,3 +220,40 @@ nav {
     height: auto;
     background-color: green;
 }
+
+.book-text p img {
+    padding-right: 20px;
+}
+
+
+/* *TYPO*/
+
+.hero-content p {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Inter";
+    color: #385159;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+.button {
+    font-size: 18px;
+    font-family: "Martian Mono";
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -1px;
+    color: #062630;
+}
+
+.stars p {
+    font-size: 14px;
+    font-family: "Martian Mono";
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #385159;
+}
+
+
+/* CHECKBOX */
