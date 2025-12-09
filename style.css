@@ -123,6 +123,10 @@ nav span {
 
 /* BOOK LAYOUT */
 
+.book-infos>.container+.container {
+    margin-top: 8rem;
+}
+
 .book-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
