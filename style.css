@@ -1,3 +1,7 @@
+/* =========================================
+   1. RESET & FONTS
+   ========================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -31,16 +35,84 @@
 }
 
 
-/*Unité rem pour les espaces entre les items (gap, padding...), plus pratique pour le responsive  */
+/* =========================================
+   2. DESIGN TOKENS (variables globales)
+   ========================================= */
+
+:root {
+    /* Couleurs principales */
+    --primary--light-salmon: #fff5ef;
+    --primary--neutral-0: #fff;
+    --primary--neutral-100: #f4f5f3;
+    --primary--neutral-200: #e6e1df;
+    --primary--neutral-700: #385159;
+    --primary--neutral-900: #062630;
+    /* Layout */
+    --container-max-width: 1180px;
+    /* Typo - tailles */
+    --fs-h1: 3.875rem;
+    --fs-h3: 3.125rem;
+    --fs-display-md: 2.125rem;
+    --fs-h5: 1.5rem;
+    --fs-body-lg: 1.25rem;
+    --fs-label: 1.125rem;
+    --fs-small: 0.875rem;
+    /* Typo - line-height */
+    --lh-tight: 1.1;
+    --lh-normal: 1.3;
+    --lh-relaxed: 1.4;
+    /* Typo - letter-spacing */
+    --ls-strong: -0.125rem;
+    --ls-soft: -0.03125rem;
+    /* Échelle d'espacement */
+    --space-2xs: 0.625rem;
+    /* 10px */
+    --space-xs: 0.75rem;
+    /* 12px */
+    --space-sm: 1.25rem;
+    /* 20px */
+    --space-md: 1.5rem;
+    /* 24px */
+    --space-lg: 2.5rem;
+    /* 40px */
+    --space-xl: 3.125rem;
+    /* 50px */
+    --space-2xl: 4rem;
+    /* 64px */
+    --space-3xl: 5rem;
+    /* 80px */
+    --space-4xl: 6.25rem;
+    /* 100px */
+    --space-5xl: 8rem;
+    /* Radius & bordures */
+    --radius-xs: 4px;
+    --radius-sm: 5px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+    --border-thin: 1px;
+    --border-thick: 2px;
+    /* Largeurs de blocs (tokens layout) */
+    --width-content-narrow: 530px;
+    --width-hero-aside: 400px;
+    --width-button-max: 380px;
+    --width-process-card: 230px;
+    --width-footer-heading: 700px;
+    --width-membership-heading: 1000px;
+    /* Tailles UI */
+    --size-icon-sm: 40px;
+    --size-logo-small: 110px;
+    /* Dégradés */
+    --gradient-hero: linear-gradient(to left, #062630fe 0%, #fea36f 100%);
+    --gradient-pro-card: linear-gradient(330deg, #9cc9da 0%, #e8e4e1 50%, #f7f5f3 100%);
+}
 
 
-/* Unité rem pour que les paddings/ gap se scalent avec les changements de tailles de la police*/
+/* =========================================
+   3. BASE LAYOUT (structure globale)
+   ========================================= */
 
 
-/* Unité % pour les largeurs fluides (images, etc)*/
-
-
-/* Background pleine largeur*/
+/* Sections pleine largeur */
 
 header,
 section,
@@ -48,22 +120,40 @@ footer {
     width: 100%;
 }
 
-section {
-    padding: 4rem 0;
+
+/* Padding vertical global des sections */
+
+section,
+footer,
+aside {
+    padding: var(--space-2xl) 0;
 }
+
+
+/* Conteneur centré (grille Figma) */
+
+.container {
+    width: min(var(--container-max-width), 90%);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   4. TYPOGRAPHIE GLOBALE
+   ========================================= */
+
+
+/* Titres */
 
 h1 {
     font-family: "Martian Mono";
     font-weight: 700;
-    font-size: 3.875rem;
+    font-size: var(--fs-h1);
     line-height: 1.2;
-    letter-spacing: -2px;
-    background: linear-gradient(to left, #062630FE 0%, #FEA36F 100%);
-    /* Coupe le dégradé pour qu’il remplisse uniquement les lettres*/
+    letter-spacing: var(--ls-strong);
+    background: var(--gradient-hero);
     -webkit-background-clip: text;
-    /*Rend le texte transparent pour laisser voir le dégradé*/
     -webkit-text-fill-color: transparent;
-    /* Standard */
     background-clip: text;
 }
 
@@ -71,26 +161,112 @@ h3 {
     font-family: "Martian Mono";
     font-weight: 600;
     /* SemiBold */
-    font-size: 50px;
-    line-height: 1.3;
-    /* 130% */
-    letter-spacing: -2px;
-    color: #062630;
-    max-width: 530px;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-normal);
+    letter-spacing: var(--ls-strong);
+    color: var(--primary--neutral-900);
+    max-width: var(--width-content-narrow);
+}
+
+h5 {
+    font-family: "Martian Mono";
+    font-weight: 600;
+    font-size: var(--fs-h5);
+    color: var(--primary--neutral-900);
 }
 
 
-/* Centrer le contenu selon les valeurs donné par figma*/
+/* Paragraphes / textes */
 
-.container {
-    /* un minimum de 1180px car la largeur défini sur figma est plus ou moins celle-ci pour tout les autres conteneurs*/
-    /* Garder une marge sur les côtés de 10% sur tablettes et mobiles*/
-    width: min(1180px, 90%);
-    margin: 0 auto;
+.book-text p,
+.membership-layout div p,
+.comment p,
+.hero-content p {
+    font-family: "Inter";
+    font-weight: 400;
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-relaxed);
+    letter-spacing: var(--ls-soft);
+    color: var(--primary--neutral-700);
+    display: flex;
+    /* alignement icône + texte */
+    align-items: center;
+}
+
+.process-order p,
+.button,
+.border {
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-strong);
+}
+
+.stars p,
+.copyright {
+    font-size: var(--fs-small);
+    letter-spacing: var(--ls-strong);
+}
+
+.comment blockquote,
+.membership-layout div span {
+    font-family: "Martian Mono";
+    font-weight: 600;
+    font-size: var(--fs-display-md);
+    letter-spacing: var(--ls-strong);
+    color: var(--primary--neutral-900);
+    text-align: center;
+}
+
+.stars p {
+    font-family: "Martian Mono";
+    font-weight: 400;
+    color: var(--primary--neutral-700);
+}
+
+.copyright {
+    font-family: "Martian Mono";
+    font-weight: 400;
 }
 
 
-/* HEADER */
+/* =========================================
+   5. HELPERS / UTILITAIRES DE LAYOUT
+   ========================================= */
+
+
+/* Stack vertical (colonne avec gap) */
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+
+/* Colonne centrée (utilisé pour footer, comment, etc.) */
+
+.flex-center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Images pleine largeur */
+
+.hero-image img,
+.book-image>img,
+footer {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+}
+
+
+/* =========================================
+   6. HEADER & NAV
+   ========================================= */
 
 header {
     padding: 2.25rem 0;
@@ -99,7 +275,7 @@ header {
 nav {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-xs);
     font-family: "Outfit", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -107,273 +283,302 @@ nav {
 }
 
 nav span {
-    color: #062630;
+    color: var(--primary--neutral-900);
 }
 
 
-/* HERO LAYOUT*/
+/* =========================================
+   7. HERO
+   ========================================= */
 
 .hero-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 6.25rem;
-}
-
-
-/* BOOK LAYOUT */
-
-.book-infos>.container+.container {
-    margin-top: 8rem;
-}
-
-.book-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 8rem;
-}
-
-
-/* PROCESS LAYOUT*/
-
-.process-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 64px;
-}
-
-.process-order {
-    display: flex;
-    gap: 50px;
-}
-
-.process-order>div {
-    width: 230px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.process-order p {
-    font-family: "Martian Mono";
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 1.3;
-    letter-spacing: -1px;
-    text-align: left;
-}
-
-
-/* ALIGNEMENTS ITEMS*/
-
-.stack {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-}
-
-.hero-content {
-    gap: 1.875rem;
+    gap: var(--space-4xl);
 }
 
 .hero-aside {
-    gap: 1.25rem;
-    max-width: 400px;
+    max-width: var(--width-hero-aside);
+    gap: var(--space-sm);
 }
 
 .legend {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: var(--space-2xs);
 }
 
-.button {
-    display: flex;
-    justify-content: space-around;
-    padding: 1.25rem;
-    border: 2px solid #062630;
-    border-radius: 5px;
-    max-width: 380px;
+.legend>img {
+    /* Petits avatars qui ne changent pas en responsive */
+    width: var(--size-logo-small);
+    height: var(--size-icon-sm);
 }
 
 
-/* ---------- */
+/* =========================================
+   8. SECTIONS BOOK (READ TOGETHER / NOT YOUR AVERAGE)
+   ========================================= */
+
+.book-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-3xl);
+}
 
 .book-text {
     display: flex;
     flex-direction: column;
-    width: 530px;
-    gap: 2rem;
-}
-
-.book-text p,
-.membership-layout div p {
-    font-family: "Inter";
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: -0.5px;
-    color: #385159;
-    /* Pour aligner horizontalement l'image et le texte*/
-    display: flex;
-    align-items: center;
+    width: var(--width-content-narrow);
+    gap: var(--space-md);
 }
 
 
-/*---------------*/
+/* Espacement entre les deux blocks book-infos */
 
-
-/* IMAGES*/
-
-.hero-image img,
-.book-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
+.book-infos>.container+.container {
+    margin-top: var(--space-5xl);
 }
 
-.legend>img {
-    /* Respecter les valeurs appliqué dans figma. l'image ne bougera pas même en responsive*/
-    /* Pour les petits avatars/icones qui n'ont pas d'incidence sur le responsive*/
-    width: 110px;
-    height: 40px;
-}
 
-.book-content>img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-}
-
-.content1,
-.content2 {
-    width: 50%;
-    height: auto;
-    background-color: green;
-}
+/* Icônes check (texte + image) */
 
 .book-text p img,
-.membership-layout div img {
-    padding-right: 20px;
+.membership-layout div img,
+.sns img:nth-child(1) {
+    padding-right: var(--space-sm);
 }
 
 
-/* *TYPO*/
+/* =========================================
+   9. PROCESS (Your tech reading journey)
+   ========================================= */
 
-.hero-content p {
-    font-size: 20px;
-    font-weight: 400;
-    font-family: "Inter";
-    color: #385159;
-    line-height: 1.4;
-    letter-spacing: -0.5px;
+.process-layout {
+    text-align: center;
+    gap: var(--space-2xl);
 }
 
-.button {
-    font-size: 18px;
-    font-family: "Martian Mono";
-    font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -1px;
-    color: #062630;
-    background-color: #FFF5EF;
-}
-
-.stars p {
-    font-size: 14px;
-    font-family: "Martian Mono";
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -1px;
-    color: #385159;
-}
-
-
-/* STYLE */
-
-.border {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #062630;
-    border-radius: 4px;
+.process-order {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: var(--space-xl);
+}
+
+.process-order>div {
+    width: var(--width-process-card);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
+.process-order p {
     font-family: "Martian Mono";
     font-weight: 600;
-    font-size: 18px;
-    line-height: 1.3;
-    letter-spacing: -1px;
+    color: var(--primary--neutral-900);
+    text-align: left;
 }
 
 
-/* MEMBERSHIP LAYOUT*/
+/* =========================================
+   10. MEMBERSHIP
+   ========================================= */
 
 .h3-membership {
     margin: auto;
     text-align: center;
-    max-width: 1000px;
-    margin-bottom: 100px;
+    max-width: var(--width-membership-heading);
+    margin-bottom: var(--space-4xl);
 }
 
 .membership-layout {
     display: grid;
     grid-template-columns: 0.9fr 1.1fr 0.9fr;
-    gap: 24px;
+    gap: var(--space-md);
 }
 
 .membership-layout>div {
     display: flex;
     flex-direction: column;
-    border: 1px solid #E6E1DF;
-    border-radius: 8px;
-    gap: 24px;
-    padding: 24px;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border: var(--border-thin) solid var(--primary--neutral-200);
+    border-radius: var(--radius-md);
 }
 
 .membership-layout div span {
     font-family: "Martian Mono";
     font-weight: 600;
-    font-size: 34px;
-    line-height: 130%;
-    letter-spacing: -1px;
-    color: #062630;
+    color: var(--primary--neutral-900);
 }
+
+
+/* Carte PRO au centre */
 
 .membership-layout>div:nth-child(2) {
-    transform: translateY(-30px);
-    /* Les autres images ayant un padding-top de 24px, içi on doit d'abord annuler le margin-top + ajouter 24px pour retrouver un alignement 
-    égale avec les 2 éléments côte à côte*/
-    padding-top: 54px;
-    background: linear-gradient( 330deg, #9CC9DA 0%, /* Blanc cassé très doux */
-    #E8E4E1 50%, /* Saumon pâle */
-    /* Neutre très clair */
-    #F7F5F3 100%/* Bleu pastel */
-    );
+    margin-top: -30px;
+    /* monte le bloc */
+    margin-bottom: -30px;
+    /* descend le bas pour compenser */
+    background: var(--gradient-pro-card);
 }
 
-h5 {
+
+/* =========================================
+   11. COMMENT (Citation / blockquote)
+   ========================================= */
+
+.comment {
+    /* Utilise flex-center-column dans le HTML si besoin */
+    gap: var(--space-lg);
+}
+
+
+/* =========================================
+   12. FOOTER
+   ========================================= */
+
+footer {
+    background-color: var(--primary--neutral-900);
+}
+
+.footer {
+    /* à utiliser avec .flex-center-column dans le HTML si tu veux */
+    gap: var(--space-lg);
+}
+
+.footer .footer-h3 {
+    text-align: center;
+    max-width: var(--width-footer-heading);
+    color: var(--primary--neutral-100);
+}
+
+.footer .button {
+    background-color: var(--primary--neutral-900);
+    color: var(--primary--neutral-0);
+    border: var(--border-thick) solid var(--primary--neutral-0);
+}
+
+.footer p {
+    color: var(--primary--neutral-0);
+}
+
+.line-footer {
+    width: min(var(--container-max-width), 90%);
+    height: 1px;
+    background-color: var(--primary--neutral-700);
+}
+
+.copyright {
+    width: min(var(--container-max-width), 90%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.sns {
+    display: flex;
+}
+
+
+/* =========================================
+   13. BOUTONS & PETITS ÉLÉMENTS
+   ========================================= */
+
+.button {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--space-sm);
+    max-width: var(--width-button-max);
     font-family: "Martian Mono";
     font-weight: 600;
-    font-size: 24px;
-    line-height: 1.1;
-    letter-spacing: -1px;
+    color: var(--primary--neutral-900);
+    background-color: var(--primary--light-salmon);
+    border: var(--border-thick) solid var(--primary--neutral-900);
+    border-radius: var(--radius-sm);
 }
 
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: #E6E1DF;
+.border {
+    width: var(--size-icon-sm);
+    height: var(--size-icon-sm);
+    border-radius: var(--radius-xs);
+    border: var(--border-thick) solid var(--primary--neutral-900);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Martian Mono";
+    font-weight: 600;
+}
+
+
+/* ===========================
+   Tablet
+   =========================== */
+
+@media (max-width: 1024px) {
+    /* Container plus étroit */
+    .container {
+        max-width: 700px;
+    }
+    /* Tout le texte aligné à gauche excepté le h3 du footer */
+    *:not(.footer-h3) {
+        text-align: left!important;
+    }
+    /* Membership h3 sans margin*/
+    .h3-membership {
+        margin: inherit;
+    }
+    /* HERO + BOOK en 1 colonne */
+    .hero-layout,
+    .book-layout {
+        grid-template-columns: 1fr;
+    }
+    /* Book text pleine largeur */
+    .book-text {
+        width: 100%;
+    }
+    /* Espacement entre les deux sections book */
+    .book-infos>.container+.container {
+        margin-top: var(--space-3xl);
+    }
+    /* Repositionner image si nécessaire */
+    .book-image {
+        display: grid;
+        grid-row: 2;
+    }
+    .book-image img {
+        border-radius: 25px;
+    }
+    /* Masquer les flèches */
+    .arrow {
+        display: none;
+    }
+    /* Colonne centrée (utilisé pour footer, comment, etc.) */
+    .flex-center-column {
+        align-items: inherit;
+    }
+    /* Process en colonne */
+    .process-order {
+        flex-direction: column;
+    }
+    .process-order>div {
+        width: 100%;
+        flex-direction: column;
+    }
+    /* Membership passe à 2 colonnes */
+    .membership-layout {
+        grid-template-columns: 1fr 1fr;
+        padding-top: 40px;
+    }
+    .membership-layout>div:nth-child(2) {
+        margin: inherit;
+    }
+    /* Footer */
+    .footer {
+        align-items: center;
+    }
+    /* Citation */
+    .comment img {
+        width: 164px;
+    }
 }
