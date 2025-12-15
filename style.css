@@ -49,8 +49,10 @@
     --primary--neutral-900: #062630;
     /* Layout */
     --container-max-width: 1180px;
+    --container-max-width-device: 320px;
     /* Typo - tailles */
     --fs-h1: 3.875rem;
+    --fs-h1-device: 2.375rem;
     --fs-h3: 3.125rem;
     --fs-display-md: 2.125rem;
     --fs-h5: 1.5rem;
@@ -89,12 +91,14 @@
     --radius-sm: 5px;
     --radius-md: 8px;
     --radius-lg: 10px;
+    --radius-xlg: 20px;
     --border-thin: 1px;
     --border-thick: 2px;
     /* Largeurs de blocs (tokens layout) */
     --width-content-narrow: 530px;
     --width-hero-aside: 400px;
     --width-button-max: 380px;
+    --padding-left-img-button: 0.938em;
     --width-process-card: 230px;
     --width-footer-heading: 700px;
     --width-membership-heading: 1000px;
@@ -135,6 +139,12 @@ aside {
 .container {
     width: min(var(--container-max-width), 90%);
     margin: 0 auto;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--primary--neutral-200);
 }
 
 
@@ -188,8 +198,10 @@ h5 {
     line-height: var(--lh-relaxed);
     letter-spacing: var(--ls-soft);
     color: var(--primary--neutral-700);
+}
+
+.special {
     display: flex;
-    /* alignement icône + texte */
     align-items: center;
 }
 
@@ -238,7 +250,7 @@ h5 {
 .stack {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-md);
 }
 
 
@@ -260,7 +272,7 @@ footer {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xlg);
 }
 
 
@@ -275,15 +287,16 @@ header {
 nav {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
-    font-family: "Outfit", sans-serif;
+    font-size: var(--space-sm);
+    font-family: "Outfit", monospace;
     font-optical-sizing: auto;
     font-weight: 600;
     font-style: normal;
+    color: var(--primary--neutral-900);
 }
 
-nav span {
-    color: var(--primary--neutral-900);
+nav img {
+    padding-right: 10px;
 }
 
 
@@ -332,6 +345,8 @@ nav span {
     flex-direction: column;
     width: var(--width-content-narrow);
     gap: var(--space-md);
+    /* Sert de position pour le cercle autour du mot "Club*/
+    position: relative;
 }
 
 
@@ -348,6 +363,41 @@ nav span {
 .membership-layout div img,
 .sns img:nth-child(1) {
     padding-right: var(--space-sm);
+}
+
+
+/* Cercle autour du mot "Club" */
+
+.word-highlight {
+    position: relative;
+    display: inline-block;
+    /* le span se colle au mot */
+    z-index: 0;
+}
+
+
+/* L’ellipse au-dessus/derrière le mot */
+
+.word-highlight::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    /* passe derrière le texte 
+    Utilisation de l'unité em car cette unité s'adapte à la taille de la police de l'élément parent, donc parfait pour 
+    s'adapter au mot "club" en toute circonstance*/
+    left: -0.2em;
+    /* léger débord à gauche */
+    right: -0.2em;
+    /* léger débord à droite */
+    top: 0.15em;
+    /* décale un peu vers le bas */
+    bottom: -0.15em;
+    /* pour bien entourer le mot */
+    background-image: url("assets/images/pattern-circle.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    pointer-events: none;
 }
 
 
@@ -411,6 +461,15 @@ nav span {
     font-family: "Martian Mono";
     font-weight: 600;
     color: var(--primary--neutral-900);
+}
+
+.membership-layout p {
+    display: flex;
+    align-items: center;
+}
+
+.pro {
+    justify-content: center;
 }
 
 
@@ -498,6 +557,10 @@ footer {
     border-radius: var(--radius-sm);
 }
 
+.button img {
+    padding-left: var(--padding-left-img-button);
+}
+
 .border {
     width: var(--size-icon-sm);
     height: var(--size-icon-sm);
@@ -580,5 +643,51 @@ footer {
     /* Citation */
     .comment img {
         width: 164px;
+    }
+}
+
+
+/* ===========================
+   Mobile 375px
+   =========================== */
+
+@media (max-width: 375px) {
+    /* Container plus étroit */
+    .container {
+        max-width: var(--container-max-width-device);
+    }
+    /* TYPO*/
+    h1 {
+        font-size: var(--fs-h1-device);
+    }
+    h3 {
+        font-size: var(--fs-display-md);
+    }
+    .comment blockquote {
+        font-size: var(--space-md);
+    }
+    .book-text p,
+    .comment p {
+        font-size: var(--space-sm);
+    }
+    .button,
+    .membership-layout div p {
+        font-size: 1rem;
+    }
+    .hero-content p {
+        font-size: var(--fs-body-lg);
+    }
+    /* Réadaptation de la colonne*/
+    .membership-layout {
+        grid-template-columns: 1fr;
+    }
+    /* Modification de l'espace vertical des items*/
+    .stack {
+        gap: var(--space-md);
+    }
+    /*Largeur centré pour le Footer */
+    .footer,
+    .legend {
+        width: 90%;
     }
 }
