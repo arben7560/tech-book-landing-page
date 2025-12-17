@@ -48,8 +48,10 @@
     --primary--neutral-700: #385159;
     --primary--neutral-900: #062630;
     /* Layout */
-    --container-max-width: 1180px;
-    --container-max-width-device: 320px;
+    --container-max-width: 73.75rem;
+    --width-container-tablet: 43.75rem;
+    --width-device: 23.438rem;
+    --container-max-width-device: 20rem;
     /* Typo - tailles */
     --fs-h1: 3.875rem;
     --fs-h1-device: 2.375rem;
@@ -95,16 +97,16 @@
     --border-thin: 1px;
     --border-thick: 2px;
     /* Largeurs de blocs (tokens layout) */
-    --width-content-narrow: 530px;
-    --width-hero-aside: 400px;
-    --width-button-max: 380px;
+    --width-content-narrow: 33.125rem;
+    --width-hero-aside: 25rem;
+    --width-button-max: 23.75rem;
     --padding-left-img-button: 0.938em;
-    --width-process-card: 230px;
-    --width-footer-heading: 700px;
-    --width-membership-heading: 1000px;
+    --width-process-card: 14.375rem;
+    --width-footer-heading: 43.75rem;
+    --width-membership-heading: 62.5rem;
     /* Tailles UI */
-    --size-icon-sm: 40px;
-    --size-logo-small: 110px;
+    --size-icon-sm: 2.5rem;
+    --size-logo-small: 6.875rem;
     /* Dégradés */
     --gradient-hero: linear-gradient(to left, #062630fe 0%, #fea36f 100%);
     --gradient-pro-card: linear-gradient(330deg, #9cc9da 0%, #e8e4e1 50%, #f7f5f3 100%);
@@ -147,6 +149,15 @@ aside {
     background-color: var(--primary--neutral-200);
 }
 
+.header,
+.hero {
+    background-color: var( --primary--neutral-100);
+}
+
+.process {
+    background: var(--gradient-pro-card);
+}
+
 
 /* =========================================
    4. TYPOGRAPHIE GLOBALE
@@ -156,7 +167,7 @@ aside {
 /* Titres */
 
 h1 {
-    font-family: "Martian Mono";
+    font-family: "Martian Mono", sans-serif;
     font-weight: 700;
     font-size: var(--fs-h1);
     line-height: 1.2;
@@ -189,9 +200,9 @@ h5 {
 /* Paragraphes / textes */
 
 .book-text p,
-.membership-layout div p,
 .comment p,
-.hero-content p {
+.hero-content p,
+.membership-layout div p {
     font-family: "Inter";
     font-weight: 400;
     font-size: var(--fs-body-lg);
@@ -523,16 +534,19 @@ footer {
     color: var(--primary--neutral-0);
 }
 
-.line-footer {
+.line-footer,
+.copyright {
     width: min(var(--container-max-width), 90%);
-    height: 1px;
-    background-color: var(--primary--neutral-700);
 }
 
 .copyright {
-    width: min(var(--container-max-width), 90%);
     display: flex;
     justify-content: space-between;
+}
+
+.line-footer {
+    height: 1px;
+    background-color: var(--primary--neutral-700);
 }
 
 .sns {
@@ -578,10 +592,10 @@ footer {
    Tablet
    =========================== */
 
-@media (max-width: 1024px) {
+@media (max-width: 64rem) {
     /* Container plus étroit */
     .container {
-        max-width: 700px;
+        max-width: var(--width-container-tablet);
     }
     /* Tout le texte aligné à gauche excepté le h3 du footer */
     *:not(.footer-h3) {
@@ -651,7 +665,7 @@ footer {
    Mobile 375px
    =========================== */
 
-@media (max-width: 375px) {
+@media (max-width: var(--width-device)) {
     /* Container plus étroit */
     .container {
         max-width: var(--container-max-width-device);
@@ -689,5 +703,6 @@ footer {
     .footer,
     .legend {
         width: 90%;
+        margin: auto;
     }
 }
